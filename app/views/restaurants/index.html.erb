@@ -3,9 +3,12 @@
 <ul>
   <% @restaurants.each do |restaurant| %>
   <li>
-    <%= link_to restaurant.name, restaurant_path(restaurant.id)  %>
-    <br>
-    <%= restaurant.address %>
+    <h4>
+      <%= link_to restaurant.name, restaurant_path(restaurant.id)  %>
+    </h4>
+    <p>
+      <%= restaurant.address %>
+    </p>
   </li>
   <br>
   <% end %>

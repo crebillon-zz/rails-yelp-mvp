@@ -1,35 +1,41 @@
 <h1><%= @restaurant.name %></h1>
-<h3>Details</h3>
 <br>
-
-<p>Address: <br>
-<%= @restaurant.address %></p>
+<h4>Details</h4>
+<p>Address: <%= @restaurant.address %></p>
 
 <% if @restaurant.phone_number.nil? %>
-  <p>Phone: <br>
-  <%= @restaurant.phone_number %></p>
+  <p>Phone: <%= @restaurant.phone_number %></p>
 <% else %>
-  <p>Phone number missing</p>
+  <p>Phone: missing</p>
 <% end %>
 
 <br>
 
-<h3>Reviews</h3>
-<br>
-<% @restaurant.reviews.each do |review| %>
-  <p><%= review.content %></p>
-  <p><%= review.rating %></p>
-  <br>
-<% end %>
+<h4>Reviews</h4>
+<h5>Reviews list</h5>
+  <% @restaurant.reviews.each do |review| %>
+    <div class="review">
+      <p><%= review.content %></p>
+      <% @star =  "<i class='far fa-star'></i>".html_safe %>
+
+      <ul class="list-inline">
+        <% review.rating.times do  %>
+          <li >
+            <%= @star %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <br>
+  <% end %>
 
 <br>
 
-<h4>Add a review</h1>
-
+<h5>Add a review</h5>
 <%= simple_form_for([@restaurant, @review]) do |f| %>
   <%= f.input :content %>
   <%= f.input :rating %>
-  <%= f.submit %>
+  <%= f.submit class:"btn" %>
 <% end %>
 <br>
-<%= link_to 'Back to list', restaurants_path %>
+<br>
