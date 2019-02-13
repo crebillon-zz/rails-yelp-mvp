@@ -16,9 +16,6 @@
 
 <h3>Reviews</h3>
 <br>
-<%= link_to 'Add a review', new_restaurant_review_path(@restaurant)  %>
-<br>
-<br>
 <% @restaurant.reviews.each do |review| %>
   <p><%= review.content %></p>
   <p><%= review.rating %></p>
@@ -27,4 +24,12 @@
 
 <br>
 
+<h4>Add a review</h1>
+
+<%= simple_form_for([@restaurant, @review]) do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit %>
+<% end %>
+<br>
 <%= link_to 'Back to list', restaurants_path %>
